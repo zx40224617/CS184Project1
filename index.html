@@ -17,6 +17,40 @@
 
   <body class="pageContents">
     <h1>CS184 HW1</h1>
-    <div class="wrapper"></div>
+    <div class="wrapper">
+      <h2 class="title">Overview of the project:</h2>
+      <p class="introduction"></p>
+      <h3>Task 1. Drawing Single-Color Triangles</h3>
+      <p class="introduction">
+        For this task, we need to finish the function rasterize_triangle() by
+        implementing the sampling methods introduced in class. For this
+        function, we are given 3 points that form a triangle, so the first step
+        I did to increase the efficieny is that using the built in min, and max
+        C++ funtions to determine a bounding box of all the sample that I need
+        to work with. After that, I have a nested for loops that check whether
+        each sample in the bounding box are in the triangle or not using the
+        point-in-triangle tests that is introduced in class. Over here, we need
+        to address one problem as the spec mentions. we should draw the triangle
+        regardless of the winding order of the verticies of the triangle. For
+        the point-in-triangle tests, the winding order matter which it could be
+        clock-wise or counterclock-wise. In order to address the issue, we can
+        check whether the L0, L1, and L2 that we computed are all the same sign
+        or not. If L0, L1, L2 are all positive or all negative, then the point
+        is inside the triangle. Note that since we want to draw the boundary of
+        the triangles as well, we should use lesss than or equals to 0 (<= 0)
+        and greater than or equals to 0 (>= 0).
+      </p>
+
+      <p class="imgTitle">test4.svg with pixel inspector on the red triangle</p>
+      <img src="images/task1.png" class="noteImage" />
+
+      <p class="introduction">
+        As we can see, there are some jaggies here around sharp angle of the red
+        triangle, and it is clearer using the pixel inspector. We can also
+        preceive the same issue with the pink triangle as well. We will solve
+        the issue in the next task using supersampling.
+      </p>
+      <hr />
+    </div>
   </body>
 </html>
