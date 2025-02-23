@@ -19,7 +19,24 @@
     <h1>CS184 HW1</h1>
     <div class="wrapper">
       <h2 class="title">Overview of the project:</h2>
-      <p class="introduction"></p>
+      <p class="introduction">
+        In this project, we are going through several basic techniques that we
+        need for raasterization like sampling, interpolation, and texture
+        mapping. In the first 2 tasks, we are going to implement triangle
+        rasterization with anti-aliasing techniques for better quality by using
+        point-in-triangle test and supersampling. In task 3, we are going to
+        play with the basic 2D transformation with a cubeman. In task 4, we are
+        implementing a interpolation techniques called barycentric coordinates
+        that can help us to interpolate the color in a triangle smoothly. For
+        task 5 and 6, we are going to implement texture sampling and level
+        sampling, we implement texture sampling for texture sampling to
+        interpolate from pixel space to screen space, and we use level sampling
+        to help with aliasing issue in order to enhance the performance of
+        rendering. Bascially, we walk through a part of the rasterization
+        pipeline in this project with implementing different techniques required
+        in different tasks. Which gives a really solid basis for undestanding
+        how rasterization works in general.
+      </p>
       <h3>Task 1. Drawing Single-Color Triangles</h3>
       <p class="introduction">
         For this task, we need to finish the function rasterize_triangle() by
