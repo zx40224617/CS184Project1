@@ -188,6 +188,61 @@
       <p class="imgTitle">Color Wheel</p>
       <img src="images/task4 color wheel.png" class="noteImage" />
       <hr />
+      <h3>Task 5. “Pixel sampling” for texture mapping</h3>
+      <p class="introduction">
+        The reason why we need to do pixel sampling is because that the ratio of
+        texture space and screen space may not be the same, so we can't just
+        take the pixels in teaxture space and put it right onto the
+        corresponding location in screen space directly, we need some kind of
+        interpolation. And in this task, we are implementing 2 different pixel
+        sampling techniques, which are nearest and bilinear. The nearest method
+        is quite literal, we just acquire the texture value that is closest to
+        the calculated uv coordinate in the texture space. Where as bilinear is
+        a little bit more complicated. Like nearest sampling, we also have a
+        calculated uv corrdinates. But this time, we get the 4 closest pixel
+        value, and we "lerp" the 4 pixel values together using lerp_color()
+        function into 1 color for rendering. So, the most important task here
+        comes to how can we calculate the correct uv coordinates in the texture
+        space. We use the same 4 nested for loops from supersampling in task 2
+        to loop over all the positions. And for each position, we use
+        barycentric coordinates to check whether the point is in the triangle or
+        not. If it is in the triangle, we calculate the uv coordinates using the
+        \( \alpha \, \beta\, \gamma\) coefficients with the given u, v values.
+        And we now get the pixel value that we need for rendering from one of
+        the specified sampling method. we assign the color to the correct index
+        in sample_buffer like in task 2.
+      </p>
+      <p class="imgTitle">
+        test5.svg with different supersample rate and pixel sampling techniques
+      </p>
+
+      <div class="imageWrapper">
+        <div class="title-image-wrapper">
+          <p class="imagSubTitle">supersample rate = 1 with nearest</p>
+          <img src="images/task 5 p = 1 t = n.png" class="resultImage" />
+        </div>
+        <div class="title-image-wrapper">
+          <p class="imagSubTitle">supersample rate = 1 with bilinear</p>
+          <img src="images/task 5 p = 1 t = b.png" class="resultImage" />
+        </div>
+      </div>
+
+      <div class="imageWrapper">
+        <div class="title-image-wrapper">
+          <p class="imagSubTitle">supersample rate = 16 with bilieanr</p>
+          <img src="images/task 5 p = 16 t = n.png" class="resultImage" />
+        </div>
+        <div class="title-image-wrapper">
+          <p class="imagSubTitle">supersample rate = 16 with bilieanr</p>
+          <img src="images/task 5 p = 16 t = b.png" class="resultImage" />
+        </div>
+      </div>
+
+      <p class="introduction">
+        As we can see, the bilinear method makes the picture a lot smoother in
+        both supersampling rate, especially when look up closely at the alphabet
+        "B" in the pixel inspector.
+      </p>
     </div>
   </body>
 </html>
