@@ -29,18 +29,20 @@
         C++ funtions to determine a bounding box of all the sample that I need
         to work with. After that, I have a nested for loops that check whether
         each sample in the bounding box are in the triangle or not using the
-        point-in-triangle tests that is introduced in class. Over here, we need
-        to address one problem as the spec mentions. we should draw the triangle
-        regardless of the winding order of the verticies of the triangle. For
-        the point-in-triangle tests, the winding order matter which it could be
-        clock-wise or counterclock-wise. In order to address the issue, we can
-        check whether the L0, L1, and L2 that we computed are all the same sign
-        or not. If L0, L1, L2 are all positive or all negative, then the point
-        is inside the triangle. Note that since we want to draw the boundary of
-        the triangles as well, we should use lesss than or equals to 0 (<= 0)
-        and greater than or equals to 0 (>= 0). At last, if the pixel is in the
-        triangle, we call the method fill_pixel() to fill the pixel with
-        specified color.
+        point-in-triangle tests (3 line tests) that is introduced in class. Over
+        here, we need to address one problem as the spec mentions. we should
+        draw the triangle regardless of the winding order of the verticies of
+        the triangle. For the 3 line tests, the winding order matter which it
+        could be clock-wise or counterclock-wise. In order to address the issue,
+        we can check whether the L0, L1, and L2 that we computed are all the
+        same sign or not. If L0, L1, L2 are all positive or all negative, then
+        the point is inside the triangle. Note that since we want to draw the
+        boundary of the triangles as well, we should use lesss than or equals to
+        (<=) and greater than or equals to (>=). Note that since there may have
+        some floating-point rounding errors that has a really small number
+        instead of 0, instead of thresholding at 0, I introduce a little slack
+        variable to adjust the issue. At last, if the pixel is in the triangle,
+        we call the method fill_pixel() to fill the pixel with specified color.
       </p>
 
       <p class="imgTitle">test4.svg with pixel inspector on the red triangle</p>
@@ -141,6 +143,33 @@
         cubeman to dance and salute, and there are more and more other
         possibilites.
       </p>
+      <hr />
+      <h3>Task 4. Barycentric coordinates</h3>
+      <p class="introduction">
+        For this task, we are implementing a interpolation method called
+        barycentric coordinates. Based on the realative location inside the
+        triangle to the 3 vertices that defined the triangle, we can compute the
+        value at the location base on the value of the 3 vertices. For example,
+        look at the following triangle.
+      </p>
+      <p class="imgTitle">
+        Triangle with one red, one green, and one blue vertex
+      </p>
+      <img src="images/task4 triangle.png" class="noteImage" />
+
+      <p class="introduction">
+        The 3 vertex of the triangle are red, green, and blue. And all the
+        colors in the triangle are calculated based on its realtaive position to
+        the 3 verticies. We first compute 3 coefficient (\( \alpha \, \beta\,
+        \gamma\)) based on the position of the current location and the
+        locations of the 3 verticies. We then use the 3 coefficients to get the
+        value that we want, which is pixel value in our case. As we can see, the
+        transition between colors are really smooth. Also, not just colors,
+        Barycentric Coordinates can also works on something like texture and
+        normal vectors.
+      </p>
+      <p class="imgTitle">Color Wheel</p>
+      <img src="images/task4 color wheel.png" class="noteImage" />
       <hr />
     </div>
   </body>
