@@ -244,6 +244,39 @@
         "B" in the pixel inspector.
       </p>
       <hr />
+
+      <h3>Task 6. Mipmaps for varying resolution texture mapping</h3>
+      <p class="introduction">
+          In this section, we implement level sampling, where we choose the
+          resolution of the texture map to use based on the base 2 logarithm of
+          the jacobian of the homography that carries the points from the image
+          triangle mesh to the texture triangle mesh. We compute this jacobian
+          approximately by taking the max of the norms of two standard basis
+          vectors under the map.
+      </p>
+      <p class="imgTitle">Texture Mapping with Different Filtering Modes</p>
+      <div class="imageWrapper">
+          <div class="title-image-wrapper">
+              <p class="imagSubTitle">L_ZERO & P_NEAREST</p>
+              <img src="images/l0pl.png" class="resultImage" />
+          </div>
+          <div class="title-image-wrapper">
+              <p class="imagSubTitle">L_ZERO & P_LINEAR</p>
+              <img src="images/l0pn.png" class="resultImage" />
+          </div>
+      </div>
+
+      <div class="imageWrapper">
+          <div class="title-image-wrapper">
+              <p class="imagSubTitle">L_NEAREST & P_NEAREST</p>
+              <img src="images/lnpl.png" class="resultImage" />
+          </div>
+          <div class="title-image-wrapper">
+              <p class="imagSubTitle">L_NEAREST & P_LINEAR</p>
+              <img src="images/lnpn.png" class="resultImage" />
+          </div>
+      </div>
+
     </div>
   </body>
 </html>
