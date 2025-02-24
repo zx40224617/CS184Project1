@@ -16,7 +16,20 @@
   </head>
 
   <body class="pageContents">
-    <h1>CS184 HW1</h1>
+    <h1>CS184 HW1 Write-Up</h1>
+    <h3>Group Members:</h3>
+    <h4>Yun Chung Chang, Elliot Meldrum</h4>
+    <br />
+    <h3>Link to webpage:</h2>
+    <a href="https://zx40224617.github.io/CS184Project1/"
+      >https://zx40224617.github.io/CS184Project1/</a
+    >
+    <br />
+    <h3>Link to GitHub repository:</h3>
+    <a href="https://github.com/cal-cs184-student/sp25-hw1-qaq"
+      >https://github.com/cal-cs184-student/sp25-hw1-qaq</a
+    >
+    <br />
     <div class="wrapper">
       <h2 class="title">Overview of the project:</h2>
       <p class="introduction">
@@ -136,7 +149,10 @@
         red triangle are making it more smooth instead of all breaking apart
         like in case where supersample rate = 1. And we can also see from the
         big picture that all the sharp corners in picture are smoother with
-        higher supersample rate.
+        higher supersample rate. This is because by using supersampling, we 
+        allow some pixel that are not entirely in the triangle to have some lighter 
+        color that can make the edges and corners a lot smpoother instead of just totally 
+        blank and seems to be cutoff. 
       </p>
       <hr />
       <h3>Task 3. Transforms</h3>
@@ -229,7 +245,7 @@
 
       <div class="imageWrapper">
         <div class="title-image-wrapper">
-          <p class="imagSubTitle">supersample rate = 16 with bilieanr</p>
+          <p class="imagSubTitle">supersample rate = 16 with nearest</p>
           <img src="images/task 5 p = 16 t = n.png" class="resultImage" />
         </div>
         <div class="title-image-wrapper">
@@ -239,44 +255,66 @@
       </div>
 
       <p class="introduction">
-        As we can see, the bilinear method makes the picture a lot smoother in
-        both supersampling rate, especially when look up closely at the alphabet
-        "B" in the pixel inspector.
+        As we can see, the bilinear method makes the picture a lot smoother, especially when  
+        we look up closely at the alphabet
+        "B" in the pixel inspector. but notice that, when we are using higher supersampling 
+        rate, the difference bewteen nearest and bilinear method are samller than in the 
+        case of lower supersampling rate. This is bascially because high supersampling 
+        rate already provides strong antialiasing effect, so the addition of the bilinear 
+        method can't make too much of the difference than the nearest method compare to the case  of using a lower 
+        supersampling rate. 
       </p>
       <hr />
 
       <h3>Task 6. Mipmaps for varying resolution texture mapping</h3>
       <p class="introduction">
-          In this section, we implement level sampling, where we choose the
-          resolution of the texture map to use based on the base 2 logarithm of
-          the jacobian of the homography that carries the points from the image
-          triangle mesh to the texture triangle mesh. We compute this jacobian
-          approximately by taking the max of the norms of two standard basis
-          vectors under the map.
+        In this section, we implement level sampling, where we choose the
+        resolution of the texture map to use based on the base 2 logarithm of
+        the jacobian of the homography that carries the points from the image
+        triangle mesh to the texture triangle mesh. We compute this jacobian
+        approximately by taking the max of the norms of two standard basis
+        vectors under the map.
       </p>
       <p class="imgTitle">Texture Mapping with Different Filtering Modes</p>
       <div class="imageWrapper">
-          <div class="title-image-wrapper">
-              <p class="imagSubTitle">L_ZERO & P_NEAREST</p>
-              <img src="images/l0pl.png" class="resultImage" />
-          </div>
-          <div class="title-image-wrapper">
-              <p class="imagSubTitle">L_ZERO & P_LINEAR</p>
-              <img src="images/l0pn.png" class="resultImage" />
-          </div>
+        <div class="title-image-wrapper">
+          <p class="imagSubTitle">L_ZERO & P_NEAREST</p>
+          <img src="images/l0pl.png" class="resultImage" />
+        </div>
+        <div class="title-image-wrapper">
+          <p class="imagSubTitle">L_ZERO & P_LINEAR</p>
+          <img src="images/l0pn.png" class="resultImage" />
+        </div>
       </div>
 
       <div class="imageWrapper">
-          <div class="title-image-wrapper">
-              <p class="imagSubTitle">L_NEAREST & P_NEAREST</p>
-              <img src="images/lnpl.png" class="resultImage" />
-          </div>
-          <div class="title-image-wrapper">
-              <p class="imagSubTitle">L_NEAREST & P_LINEAR</p>
-              <img src="images/lnpn.png" class="resultImage" />
-          </div>
+        <div class="title-image-wrapper">
+          <p class="imagSubTitle">L_NEAREST & P_NEAREST</p>
+          <img src="images/lnpl.png" class="resultImage" />
+        </div>
+        <div class="title-image-wrapper">
+          <p class="imagSubTitle">L_NEAREST & P_LINEAR</p>
+          <img src="images/lnpn.png" class="resultImage" />
+        </div>
       </div>
-
+      
+      <h4>Comparison between all sampling techniques</h4>
+      <p class = "introduction">
+        we have already explored pixel sampling, level sampling, and supersampling 
+        in this HW. There are some advantages and disadvantages of using each of them. 
+        Supersampling is conceptually the easiest, and the antialiasing power is 
+        amazing, but it requires a lot more cost which cause it to run slowly since 
+        it need to compute and look up a lot more locations that 2 other methods. For 
+        level sampling, although it taks more memory usage since it needs to pre compute 
+        severl levels and store it, but it doens't need to compute again eveytime when rendering,
+        which is more cost-effective than super sampling and also provides powerful 
+        antialiasing effect. At last, for pixel sampling, as we can see from previous part, 
+        nearest method can do really limited antialiasing effect by itself even though 
+        it doesn't require too much of memory and can be computed really fast. On the other hand
+        bilinear method can provide a really strong antialiasing effect with a little more 
+        computation. And as we can see, by combining these techniques together, we can provide a 
+        even stronger antialiasing effect. 
+      </p>
     </div>
   </body>
 </html>
